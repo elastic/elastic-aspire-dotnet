@@ -1,4 +1,2 @@
 Elastic Aspire Integration
-Copyright 2012-2025 Elasticsearch B.V.
-# Include the following line if and only if ASF code has been copy/pasted/vendored into the product
-This product includes software developed by The Apache Software Foundation (http://www.apache.org/).
+Copyright 2024-2025 Elasticsearch B.V.
