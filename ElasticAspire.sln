@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.35912.347
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Hosting.Elasticsearch", "src\Aspire.Hosting.Elasticsearch\Aspire.Hosting.Elasticsearch.csproj", "{68B81100-B950-94F5-46EF-0CA608D14C23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Elastic.Clients.Elasticsearch", "src\Aspire.Elastic.Clients.Elasticsearch\Aspire.Elastic.Clients.Elasticsearch.csproj", "{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B67E1CF5-992F-4678-A1A0-C2E4A7767786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Elastic.Clients.Elasticsearch.Tests", "tests\Aspire.Elastic.Clients.Elasticsearch.Tests\Aspire.Elastic.Clients.Elasticsearch.Tests.csproj", "{8ED88605-39BB-BB8E-B7CB-C9CA933B1338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Hosting.Elasticsearch.Tests", "tests\Aspire.Hosting.Elasticsearch.Tests\Aspire.Hosting.Elasticsearch.Tests.csproj", "{E46FA157-658A-61C9-1732-BAB7FBD7AFCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68B81100-B950-94F5-46EF-0CA608D14C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B81100-B950-94F5-46EF-0CA608D14C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B81100-B950-94F5-46EF-0CA608D14C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B81100-B950-94F5-46EF-0CA608D14C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED88605-39BB-BB8E-B7CB-C9CA933B1338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED88605-39BB-BB8E-B7CB-C9CA933B1338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED88605-39BB-BB8E-B7CB-C9CA933B1338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED88605-39BB-BB8E-B7CB-C9CA933B1338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46FA157-658A-61C9-1732-BAB7FBD7AFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46FA157-658A-61C9-1732-BAB7FBD7AFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46FA157-658A-61C9-1732-BAB7FBD7AFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46FA157-658A-61C9-1732-BAB7FBD7AFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68B81100-B950-94F5-46EF-0CA608D14C23} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6A9628A3-3F8C-458E-C7DF-20D977BC6F0A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8ED88605-39BB-BB8E-B7CB-C9CA933B1338} = {B67E1CF5-992F-4678-A1A0-C2E4A7767786}
+		{E46FA157-658A-61C9-1732-BAB7FBD7AFCD} = {B67E1CF5-992F-4678-A1A0-C2E4A7767786}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D2F5E95-3D46-4F4E-94EC-6B6EFF230F43}
+	EndGlobalSection
+EndGlobal
