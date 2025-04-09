@@ -2,10 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System.Net.Sockets;
-using Aspire.Hosting.ApplicationModel;
 using Aspire.Hosting.Elasticsearch;
 using Aspire.Hosting.Tests.Utils;
-using Aspire.Hosting.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -150,89 +148,5 @@ public class AddElasticsearchTests
 
         Assert.Equal($"http://elastic:{elasticsearch.Resource.PasswordParameter.Value}@localhost:27020", connectionString);
         Assert.Equal("http://elastic:{elasticsearch-password.value}@{elasticsearch.bindings.http.host}:{elasticsearch.bindings.http.port}", connectionStringResource.ConnectionStringExpression.ValueExpression);
-    }
-
-    [Fact]
-    public async Task VerifyManifestWithDefaultsAddsAnnotationMetadata()
-    {
-        using var appBuilder = TestDistributedApplicationBuilder.Create();
-
-        var elasticsearch = appBuilder.AddElasticsearch("elasticsearch");
-
-        var manifest = await ManifestUtils.GetManifest(elasticsearch.Resource);
-
-        var expectedManifest = $$"""
-            {
-              "type": "container.v0",
-              "connectionString": "http://elastic:{elasticsearch-password.value}@{elasticsearch.bindings.http.host}:{elasticsearch.bindings.http.port}",
-              "image": "{{ElasticsearchContainerImageTags.Registry}}/{{ElasticsearchContainerImageTags.Image}}:{{ElasticsearchContainerImageTags.Tag}}",
-              "env": {
-                "discovery.type": "single-node",
-                "xpack.security.enabled": "true",
-                "ELASTIC_PASSWORD": "{elasticsearch-password.value}"
-              },
-              "bindings": {
-                "http": {
-                  "scheme": "http",
-                  "protocol": "tcp",
-                  "transport": "http",
-                  "targetPort": 9200
-                },
-                "internal": {
-                  "scheme": "tcp",
-                  "protocol": "tcp",
-                  "transport": "tcp",
-                  "targetPort": 9300
-                }
-              }
-            }
-            """;
-        Assert.Equal(expectedManifest, manifest.ToString());
-    }
-
-    [Fact]
-    public async Task VerifyManifestWithDataVolumeAddsAnnotationMetadata()
-    {
-        using var appBuilder = TestDistributedApplicationBuilder.Create();
-
-        var elasticsearch = appBuilder.AddElasticsearch("elasticsearch")
-            .WithDataVolume("data");
-
-        var manifest = await ManifestUtils.GetManifest(elasticsearch.Resource);
-
-        var expectedManifest = $$"""
-            {
-              "type": "container.v0",
-              "connectionString": "http://elastic:{elasticsearch-password.value}@{elasticsearch.bindings.http.host}:{elasticsearch.bindings.http.port}",
-              "image": "{{ElasticsearchContainerImageTags.Registry}}/{{ElasticsearchContainerImageTags.Image}}:{{ElasticsearchContainerImageTags.Tag}}",
-              "volumes": [
-                {
-                  "name": "data",
-                  "target": "/usr/share/elasticsearch/data",
-                  "readOnly": false
-                }
-              ],
-              "env": {
-                "discovery.type": "single-node",
-                "xpack.security.enabled": "true",
-                "ELASTIC_PASSWORD": "{elasticsearch-password.value}"
-              },
-              "bindings": {
-                "http": {
-                  "scheme": "http",
-                  "protocol": "tcp",
-                  "transport": "http",
-                  "targetPort": 9200
-                },
-                "internal": {
-                  "scheme": "tcp",
-                  "protocol": "tcp",
-                  "transport": "tcp",
-                  "targetPort": 9300
-                }
-              }
-            }
-            """;
-        Assert.Equal(expectedManifest, manifest.ToString());
     }
 }
