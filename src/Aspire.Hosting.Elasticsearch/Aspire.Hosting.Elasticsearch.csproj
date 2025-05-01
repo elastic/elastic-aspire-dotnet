@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageTags>aspire integration hosting elasticsearch</PackageTags>
+    <Description>Elasticsearch support for .NET Aspire.</Description>
+    <PackageIconFullPath>$(SharedDir)Elastic_logo.png</PackageIconFullPath>
+    <SuppressFinalPackageVersion>true</SuppressFinalPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting" />
+    <PackageReference Include="Elastic.Clients.Elasticsearch" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Aspire.Elastic.Clients.Elasticsearch\ElasticsearchHealthCheck.cs" Link="ElasticsearchHealthCheck.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Aspire.Hosting.Elasticsearch.Tests" />
+  </ItemGroup>
+</Project>
