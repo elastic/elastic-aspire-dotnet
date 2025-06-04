@@ -10,7 +10,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <StrongNameKeyId>Open</StrongNameKeyId>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UsePublicApiAnalyzers>true</UsePublicApiAnalyzers>

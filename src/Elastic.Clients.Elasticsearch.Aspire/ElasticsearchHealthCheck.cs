@@ -24,7 +24,7 @@ internal sealed class ElasticsearchHealthCheck : IHealthCheck
         try
         {
             var pingResult = await _elasticsearchClient.PingAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
-            bool isSuccess = pingResult.ApiCallDetails.HttpStatusCode == 200;
+            var isSuccess = pingResult.ApiCallDetails.HttpStatusCode == 200;
 
             return isSuccess
                 ? HealthCheckResult.Healthy()
