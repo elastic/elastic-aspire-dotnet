@@ -38,10 +38,7 @@ internal sealed class ConfigurationSchemaAttribute : Attribute
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
 internal sealed class LoggingCategoriesAttribute : Attribute
 {
-    public LoggingCategoriesAttribute(params string[] categories)
-    {
-        Categories = categories;
-    }
+    public LoggingCategoriesAttribute(params string[] categories) => Categories = categories;
 
     /// <summary>
     /// The list of log categories produced by the component. These categories will show up under the Logging:LogLevel section in appsettings.json.

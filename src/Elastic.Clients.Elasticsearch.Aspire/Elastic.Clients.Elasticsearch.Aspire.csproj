@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Elastic.Clients.Elasticsearch.Aspire</PackageId>
     <IsPackable>true</IsPackable>
-    <PackageTags>$(ComponentCommonPackageTags) Elasticsearch</PackageTags>
     <Description>A Elasticsearch client that integrates with Aspire, including health checks, logging, and telemetry.</Description>
+    <PackageTags>aspire integration client component cloud Elasticsearch</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+    <PackageReference Include="MinVer" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
   </ItemGroup>
 
