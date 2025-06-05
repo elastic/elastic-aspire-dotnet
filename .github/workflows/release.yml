@@ -1,12 +1,11 @@
 name: 'CD'
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
-      flavor:
-        description: 'The release flavor'
-        type: 'string'
-        required: true
       solution:
         description: 'The filename of the .NET solution file'
         type: 'string'
@@ -24,7 +23,7 @@ on:
         required: true
 
 concurrency:
-  group: 'release-${{ inputs.flavor }}'
+  group: 'release'
   cancel-in-progress: false
 
 env:
@@ -44,53 +43,36 @@ jobs:
     name: 'Build'
     runs-on: 'ubuntu-latest'
     steps:
-      - name: 'Parse Version'
-        id: 'version'
-        uses: 'zyactions/semver@v1'
-        with:
-          version: ${{ inputs.release_tag }}
-          prefixes: 'serverless-'
-
       - name: 'Checkout'
-        uses: 'actions/checkout@v4'
+        uses: 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' # v4
 
       - name: '.NET Setup'
-        uses: 'actions/setup-dotnet@v4'
+        uses: 'actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9' # v4
         with:
           global-json-file: '${{ github.workspace }}/${{ env.GLOBAL_JSON_FILE }}'
 
       - name: '.NET Cache Packages'
-        uses: 'actions/cache@v4'
+        uses: 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' # v4
         with:
           path: '~/.nuget/packages'
-          key: '${{ runner.os }}-nuget-${{ inputs.flavor }}-${{ hashFiles(fromJson(env.CACHE_PATTERNS)) }}'
-          restore-keys: '${{ runner.os }}-nuget-${{ inputs.flavor }}-'
+          key: '${{ runner.os }}-nuget-${{ hashFiles(fromJson(env.CACHE_PATTERNS)) }}'
+          restore-keys: '${{ runner.os }}-nuget-'
 
       - name: '.NET Restore'
         run: >-
           dotnet restore "${{ github.workspace }}/${{ inputs.solution }}"
 
       - name: '.NET Pack'
-        env:
-          # The complete semver version string
-          CURRENT_VERSION: ${{ steps.version.outputs.version }}
-          # Assembly version is sticky to MAJOR.0.0.0 to avoid binding redirects because we strong name our assemblies
-          CURRENT_ASSEMBLY_VERSION: '${{ steps.version.outputs.major }}.0.0.0'
-          # File version reflects actual version number without prelease and build since these are not allowed in its struct
-          CURRENT_ASSEMBLY_FILE_VERSION: '${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}.${{ steps.version.outputs.patch }}'
         run: >-
           dotnet pack
           "${{ github.workspace }}/${{ inputs.solution }}"
           --no-restore
           --configuration "${{ env.BUILD_CONFIG }}"
           -p:ContinuousIntegrationBuild=true
-          -p:CurrentVersion=${{ env.CURRENT_VERSION }}
-          -p:CurrentAssemblyVersion=${{ env.CURRENT_ASSEMBLY_VERSION }}
-          -p:CurrentAssemblyFileVersion=${{ env.CURRENT_ASSEMBLY_FILE_VERSION }}
           -o "${{ github.workspace }}/${{ env.PACKAGE_PATH }}"
 
       - name: 'Upload Artifacts'
-        uses: 'actions/upload-artifact@v4'
+        uses: 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' # v4
         with:
           name: 'packages'
           path: '${{ github.workspace }}/${{ env.PACKAGE_PATH }}'
@@ -109,15 +91,15 @@ jobs:
           # - { name: 'GitHub', source: 'https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json', key: 'GITHUB_TOKEN'  }
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v4'
+        uses: 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' # v4
 
       - name: '.NET Setup'
-        uses: 'actions/setup-dotnet@v4'
+        uses: 'actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9' # v4
         with:
           global-json-file: '${{ github.workspace }}/${{ env.GLOBAL_JSON_FILE }}'
 
       - name: 'Download Artifacts'
-        uses: actions/download-artifact@v4
+        uses: 'actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093' # v4
         with:
           name: 'packages'
           path: '${{ github.workspace }}/${{ env.PACKAGE_PATH }}'
