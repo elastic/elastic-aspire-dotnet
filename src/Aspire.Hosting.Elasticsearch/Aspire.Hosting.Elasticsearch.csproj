@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Elastic.Aspire.Hosting.Elasticsearch</PackageId>
+    <PackageId>Aspire.Hosting.Elasticsearch</PackageId>
     <IsPackable>true</IsPackable>
     <PackageTags>aspire integration hosting elasticsearch</PackageTags>
     <Description>Elasticsearch support for .NET Aspire.</Description>
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\Elastic.Clients.Elasticsearch.Aspire\ElasticsearchHealthCheck.cs" Link="ElasticsearchHealthCheck.cs" />
+    <Compile Include="..\Aspire.Elastic.Clients.Elasticsearch\ElasticsearchHealthCheck.cs" Link="ElasticsearchHealthCheck.cs" />
   </ItemGroup>
 
   <ItemGroup>
