@@ -5,6 +5,8 @@
     <IsPackable>true</IsPackable>
     <Description>A Elasticsearch client that integrates with Aspire, including health checks, logging, and telemetry.</Description>
     <PackageTags>aspire integration client component cloud Elasticsearch</PackageTags>
+    <PackageProjectUrl>https://www.elastic.co</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/elastic/elastic-aspire-dotnet</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
