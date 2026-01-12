@@ -5,6 +5,8 @@
     <IsPackable>true</IsPackable>
     <PackageTags>aspire integration hosting elasticsearch</PackageTags>
     <Description>Elasticsearch support for .NET Aspire.</Description>
+    <PackageProjectUrl>https://www.elastic.co</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/elastic/elastic-aspire-dotnet</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
